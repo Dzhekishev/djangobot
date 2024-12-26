@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4c4cfd, #7e86fa);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .info-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 90%;
+            max-width: 600px;
+        }
+        .info-item {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .info-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        .info-item:hover {
+            transform: scale(1.05);
+        }
+        .info-item:active {
+            transform: scale(0.98);
+        }
+        .info-item span {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 18px;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .nav-button {
+            background-color: transparent;
+            border: none;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .nav-button:hover {
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Информация</h1>
+    <div class="info-container">
+        <a href="https://www.example.com/information1" target="_blank" class="info-item">
+            <img src="{% static 'images/asia.png' %}?text=Азиатский+маршрут" alt="Азиатский маршрут">
+            <span>Азиатский маршрут</span>
+        </a>
+        <!-- Ссылка на страницу с информацией о Галатском маршруте -->
+        <a href="{% url 'info_list' %}" class="info-item">
+            <img src="{% static 'images/tower.png' %}?text=Галатский+маршрут" alt="Галатский маршрут">
+            <span>Галатский маршрут</span>
+        </a>
+        <a href="https://www.example.com/information3" target="_blank" class="info-item">
+            <img src="{% static 'images/europe.png' %}?text=Европейский+маршрут" alt="Европейский маршрут">
+            <span>Европейский маршрут</span>
+        </a>
+    </div>
+
+
+<!-- Навигационные кнопки назад и вперед -->
+<div class="nav-buttons">
+     <button class="nav-button" onclick="window.location.href='{% url 'app' %}'">&#8592; Назад</button>
+    <button class="nav-button" onclick="history.forward()">Вперед &#8594;</button>
+</div>

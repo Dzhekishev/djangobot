@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фразы</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin: 0;
+            background: linear-gradient(135deg, #4c4cfd, #7e86fa);
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .card {
+            background-color: white;
+            width: 200px;
+            height: 150px;
+            margin: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .card h3 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .card p {
+            font-size: 14px;
+            color: #777;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            width: 100%;
+        }
+        .nav-button {
+            background-color: transparent;
+            border: none;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .nav-button:hover {
+            color: #ccc;
+        }
+        a {
+            text-decoration: none; /* Убирает подчеркивание под ссылками */
+        }
+        a:hover {
+            text-decoration: none; /* Убирает подчеркивание при наведении */
+        }
+    </style>
+</head>
+<body>
+    {% for phrase in phrases %}
+        <a href="{% url 'phrases_detail' phrase.id %}">
+            <div class="card">
+                {% if phrase.image %}
+                    <img src="{{ phrase.image.url }}" alt="{{ phrase.name }}">
+                {% endif %}
+                <h3>{{ phrase.name }}</h3>
+            </div>
+        </a>
+    {% endfor %}
+
+<div class="nav-buttons">
+    <button class="nav-button" onclick="window.location.href='{% url 'app' %}'">&#8592; Назад</button>
+</div>

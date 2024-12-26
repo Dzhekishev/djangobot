@@ -1,0 +1,69 @@
+<!-- miniapp/templates/miniapp/info_detail.html -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ info.name }}</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin: 0;
+            background: linear-gradient(135deg, #4c4cfd, #7e86fa);
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .info-detail {
+            background-color: white;
+            width: 300px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .info-detail img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .info-detail h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        .info-detail p {
+            font-size: 16px;
+            color: #555;
+        }
+        .back-btn {
+            background-color: #4c4cfd;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .back-btn:hover {
+            background-color: #3b3be8;
+        }
+    </style>
+</head>
+<body>
+    <div class="info-detail">
+        <img src="{{ info.image.url }}" alt="{{ info.name }}">
+        <h2>{{ info.name }}</h2>
+        <p>{{ info.description }}</p>
+        <a href="{% url 'info_list' %}">
+            <button class="back-btn">Назад</button>
+        </a>
+    </div>
+</body>
+</html>

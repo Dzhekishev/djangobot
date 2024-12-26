@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ phrases.name }}</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+            background: linear-gradient(135deg, #4c4cfd, #7e86fa);
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            color: white;
+        }
+        .content {
+            background-color: white;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            text-align: left;
+            line-height: 1.6;
+        }
+        .content img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .back-button {
+            margin-top: 20px;
+            background-color: #4c4cfd;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .back-button:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        {% if phrase.image %}
+            <img src="{{ phrase.image.url }}" alt="{{ phrase.name }}">
+        {% endif %}
+        <h1>{{ phrase.name }}</h1>
+        <p>{% autoescape off %}{{ phrase.words|linebreaks }}{% endautoescape %}</p>
+        <a href="{% url 'phrases_list' %}" class="back-button">&#8592; Назад к списку</a>
+    </div>
+</body>
+</html>
