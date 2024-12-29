@@ -53,17 +53,17 @@
         }
         .back-btn:hover {
             background-color: #3b3be8;
-        }
+  cd c      }
     </style>
 </head>
 <body>
     <div class="info-detail">
         <img src="{{ info.image.url }}" alt="{{ info.name }}">
         <h2>{{ info.name }}</h2>
-        <p>{{ info.description }}</p>
-        <a href="{% url 'info_list' %}">
-            <button class="back-btn">Назад</button>
-        </a>
+        <p>{% autoescape off %}{{ info.description|linebreaks }}{% endautoescape %}</p>
+        <!-- Кнопка назад -->
+        <button class="back-btn" onclick="history.back()">Назад</button>
     </div>
 </body>
+
 </html>

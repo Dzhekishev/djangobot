@@ -21,3 +21,19 @@ class Phrases(models.Model):
 
 	def __str__(self):
 		return self.name
+
+class Route(models.Model):
+	name=models.CharField('name', max_length=100)
+	image=models.ImageField(upload_to='product_images/', blank=True, null=True)
+	info=models.ManyToManyField(Info)
+
+	def __str__(self):
+		return self.name
+
+class Maps(models.Model):
+	name=models.CharField('name',max_length=100)
+	image=models.ImageField(upload_to='product_images/',blank=True, null=True)
+	site=models.URLField(max_length=500)
+
+	def __str__(self):
+		return self.name

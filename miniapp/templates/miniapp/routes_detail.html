@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ route.name }}</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+            background: linear-gradient(135deg, #4c4cfd, #7e86fa);
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            color: white;
+        }
+        .content {
+            background-color: white;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            text-align: left;
+            line-height: 1.6;
+        }
+        .content img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ul li {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+        .back-button {
+            margin-top: 20px;
+            background-color: #4c4cfd;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .back-button:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        {% if route.image %}
+            <img src="{{ route.image.url }}" alt="{{ route.name }}">
+        {% endif %}
+        <h1>{{ route.name }}</h1>
+        <p><strong>Описание:</strong> {% autoescape off %}{{ route.description|linebreaks }}{% endautoescape %}</p>
+        <p><strong>Информация:</strong></p>
+        <ul>
+            {% for info in route.info.all %}
+                <li>{{ info }}</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'routes_list' %}" class="back-button">&#8592; Назад к списку маршрутов</a>
+    </div>
+</body>
+</html>

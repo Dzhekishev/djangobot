@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Маршруты</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #6f87ff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .route-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 90%;
+            max-width: 800px;
+        }
+        .route-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .route-item img {
+            width: 100%;
+            height: 250px; /* Увеличена высота с 200px до 250px */
+            object-fit: cover;
+        }
+        .route-item span {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .route-item:hover {
+            transform: scale(1.05);
+        }
+        .back-button {
+            margin-top: 20px;
+            background: #4c4cfd;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .back-button:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Маршруты</h1>
+    <div class="route-container">
+        {% for route in route %}
+        <a href="{% url 'info_list' route.id  %}" class="route-item">
+            <img src="{{ route.image.url }}" alt="{{ route.name }}">
+            <span>{{ route.name }}</span>
+        </a>
+        {% endfor %}
+    </div>
+    <a href="{% url 'app' %}" class="back-button">← Назад</a>
+</body>
+</html>
